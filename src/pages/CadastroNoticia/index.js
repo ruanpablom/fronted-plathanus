@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import Form from '../../components/Form';
 import Input from '../../components/Input';
@@ -14,7 +15,7 @@ function CadastroNoticia() {
   const [ texto, setTexto ] = useState('');
   const [ textoError, setTextoError] = useState(false);
   const [ autor, setAutor ] = useState({id: null, nome:'Selecione o autor'});
-  const [ autorError, setAutorError ] = useState(true);
+  const [ autorError, setAutorError ] = useState(false);
   const [ autores, setAutores ] = useState([]);
 
   useEffect(() => {
@@ -28,10 +29,31 @@ function CadastroNoticia() {
         setAutorError(false);
       }catch(err){
         setAutores([]);
+        setAutorError(true);
       }
     }
     fetchAutores();
   }, []);
+
+const inserirNoticia = async () => {
+  try {
+    const result = await axios({
+      method: 'post',
+      data: {
+        titulo,
+        texto,
+        autorId: autor.id,
+      },
+      url: `${process.env.REACT_APP_HOST_URL}/api/noticias`,
+    });
+    toast.success('Noticia inserida com sucesso!');
+    setTexto('');
+    setTitulo('');
+    setAutor({});
+  }catch(err){
+    console.log({err});
+  }
+}
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,8 +63,18 @@ function CadastroNoticia() {
     if(!texto){
       setTextoError(true);
     }
-    console.log(texto);
-    console.log(autor);
+    if(!autor.id){
+      setAutorError(true);
+    }
+    if(titulo && texto && autor.id){
+      inserirNoticia();
+      resetSelect();
+    }
+  }
+
+  const resetSelect = () => {
+    const select = document.getElementById('select-autores');
+    select.selectedIndex = 0;
   }
 
   const onChangeTitulo = (event) => {
@@ -57,6 +89,7 @@ function CadastroNoticia() {
 
   const onChangeAutor = (event) => {
     const autorValue = JSON.parse(event.target.value);
+    setAutorError(autorValue.id ? false : true);
     setAutor(autorValue);
   }
 
@@ -84,16 +117,16 @@ function CadastroNoticia() {
         errorName="Você precisa inserir um texto" 
         hasError={textoError}
       />
-      <Select
+      <Select id="select-autores"
         options={autores}
         value={autor.nome} 
         name="Autor"
-        errorName="Você precisa cadastrar pelo menos um autor"
+        errorName={autores.length === 0 ? "Você precisa cadastrar pelo menos um autor" : "Selecione um autor"}
         hasError={autorError} 
         onChange={onChangeAutor}
         style={{marginTop: '20px'}}
       />
-      <button type="submit">Cadastrar</button>
+      <button type="submit">Cadastrar Noticia</button>
     </Form>
   </Container>
 }

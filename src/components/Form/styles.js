@@ -21,7 +21,7 @@ export const Form = styled.form`
     padding: 0.5rem;
   } */
 
-  textarea{
+  /* textarea{
     background: transparent;
     border: 1px #00db7d solid;
     color: #00db7d;
@@ -44,13 +44,15 @@ export const Form = styled.form`
 
   textarea + label {
     margin-top: 20px;
-  }
+  } */
 
   button{
     margin-top: 20px;
-    color: #00db7d;
-    background-color: transparent;
+    background-color: #00db7d;
     padding: 0.5rem;
-    border: 1px #00db7d solid;
+    border-style: none;
+    color: #070a57;
+    cursor: pointer;
+    align-self: center;
   }
 `;

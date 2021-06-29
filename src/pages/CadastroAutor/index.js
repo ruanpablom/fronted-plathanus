@@ -25,7 +25,6 @@ function CadastroAutor() {
     }catch(err){
       if(err.response && err.response.data.name === 'validation'){
         err.response.data.messages.forEach(message => {
-          console.log(message)
           toast.error(message.message)
         })
       }

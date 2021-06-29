@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
+  width: 70%;
   flex-direction: column;
   align-items: center;
+
+  h2{
+    color:#00db7d;
+  }
 `;
 
 export const SearchContainer = styled.div`
   display: flex;
   height: 2.5rem;
-  width: 70%;
+  width: 100%;
+  margin-bottom: 1rem;
 `;
 
 export const SearchInput = styled.input`
@@ -30,4 +35,5 @@ export const SearchButton = styled.button`
   background-color: #00db7d;
   border-style: none;
   border-radius: 0px 20px 20px 0px;
+  cursor: pointer;
 `;
