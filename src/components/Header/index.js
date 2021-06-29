@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MdDehaze } from 'react-icons/md';
 
-import {Container} from './styled';
+import {Container} from './styles';
 
 function Header({openNavigation}) {
   // const location = useLocation();

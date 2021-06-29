@@ -5,5 +5,6 @@ export const Container  = styled.div`
   display: flex;
   width: 100%;
   padding: 1rem;
-  background: #000000;
+  background: transparent;
+  top: 0;
 `;

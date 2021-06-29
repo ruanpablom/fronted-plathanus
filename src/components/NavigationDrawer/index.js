@@ -10,7 +10,13 @@ function NavigationDrawer({isOpen, closeNavigation}) {
     <Close size={24} color="#fff" onClick={closeNavigation}/>
     <Menu>
       <MenuItem>
-        <Link to="/" onClick={closeNavigation}>Pesquisar Notícia</Link>
+        <Link to="/" onClick={closeNavigation}>Pesquisar Notícias</Link>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/cadastro-noticia" onClick={closeNavigation}>Cadastrar Notícia</Link>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/cadastro-autor" onClick={closeNavigation}>Cadastrar Autor</Link>
       </MenuItem>
     </Menu>
   </Container>

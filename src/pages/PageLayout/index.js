@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import Header from '../../components/Header';
 import NavigationDrawer from '../../components/NavigationDrawer';
-import { Container } from './styled';
+import { Container } from './styles';
 
 function PageLayout({ children }) {
   const [isOpenNavigationDrawer, setIsOpenNavigationDrawer] = useState(false);
